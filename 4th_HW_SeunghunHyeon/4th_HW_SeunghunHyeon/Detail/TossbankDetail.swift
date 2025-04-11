@@ -8,6 +8,7 @@ import SwiftUI
 
 struct TossbankDetail: View {
     @State private var selectedTab = "통장"
+    @State private var showAccountToss = false
     @State private var isNavigating = false
     let tabs = ["통장", "내 토스뱅크", "상품찾기"]
     
@@ -23,18 +24,11 @@ struct TossbankDetail: View {
                     .frame(height: 50)
                     .listRowSeparator(.hidden)
                 Section {
-                    AccountToss(isNavigating: $isNavigating)
-                        .listRowInsets(EdgeInsets())
-                        .listRowSeparator(.hidden)
-                        .listRowBackground(Color.white)
-                        .background(
-                            NavigationLink(destination: SecondView(), isActive: $isNavigating) {
-                                EmptyView()
-                            }
-                            .hidden()
-                        )
+                    AccountToss()
+                        .listRowInsets(EdgeInsets()) // 여백 제거
+                        .listRowSeparator(.hidden)   // 구분선 제거
+                        .listRowBackground(Color.white) // 배경 지정
                 }
-
                 Spacer()
                     .listRowSeparator(.hidden)
                 Section {
@@ -82,6 +76,7 @@ struct TossbankDetail: View {
                 }
             }
             
+        }
         }
     }
 
